@@ -5,6 +5,53 @@
     user-select: none ; /* Standard syntax */
 }
 
+.slider{
+    border:none;outline:none; -webkit-appearance: none;background: #ccd5db;border-radius: 1px;width: 80px;height: 2px;float: left;margin: 14px 0;position: relative;
+}
+.slider:hover {
+    opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.32);
+    border-radius: 100%;
+}
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.32);
+    border-radius: 100%;
+    border:none;
+}
+
+
+.slider-con{
+    cursor:pointer;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.32);
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    position: absolute;
+    left: -8px;
+    top: -7px;;
+}
+.slider-con-point{
+    width: 6px;
+    height: 6px;
+    background-color: #1593ff;
+    border-radius: 100%;
+    margin: 5px auto;
+}
+
+
 #gomjz-properties .top-nav li{
     cursor: pointer;
     font-weight: 700;flex: 1;

@@ -26,12 +26,11 @@ li{
     list-style: none;
 }
 .clearfix:after {
-    content: ".";
+    content: "";
     display: block;
     height: 0;
     visibility: hidden;
     clear: both
 }
 
-.clearfix {
-    zoom:1}
+
