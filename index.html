@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+
     <div id="gomjz-properties" style="flex:1 0 262px">
         <div style="background:#fff;border:1px solid #eee;width:262px;height:100%;margin:5px 15px; ">
             <div style="height:60px;">
@@ -69,16 +70,26 @@
 //editor
 ;(function(){
     "use strict";
+    var currentBlock = {};
+    currentBlock.element = null;
+    currentBlock.id = 0;
+
+    var gomjzDraw = $('#gomjz-draw');
+
     $(function(){
+
         interact('.gomjz-block-text').on('tap',function(event){
             const defaultTextColor = '#000000';
-
+            var block = currentBlock.element = event.currentTarget?event.currentTarget:null;
             var blockEle= event.currentTarget;
             var propertyEle = $('#gomjz-properties');
 
-
             var textColor = blockEle.dataset.textColor;
+            var textColorPickerEle = propertyEle.find('.text-color-picker');
             textColor = textColor==undefined?defaultTextColor:textColor;
+            setColorPicker(textColorPickerEle,textColor);
+
+
 
 
         });
@@ -94,11 +105,18 @@
                 }
                 setColorPicker($(el), '#'+hex, color);
                 $(el).colpickHide();
+
+                if(currentBlock.element){
+                    currentBlock.element.dataset.textColor = '#'+hex;
+                    currentBlock.element.querySelector('.block-content').style.color = '#'+hex;
+                }
+
             }
         });
 
         $('.text-color-picker-pre li').on('click',function(){
             setColorPicker($('.text-color-picker'), $(this).attr('data-bgcolor') ,$(this).attr('data-color'));
+
         })
 
         interact('.text-resizable').resizable({
@@ -141,18 +159,21 @@
             event.currentTarget.querySelector('.resize-rec').style.visibility = 'visible';
         });
 
-        $(document).on('click','.block-content',function(){
 
-        })
 
         $('.tool-text').on('click',function(){
             var block = document.createElement("block");
             var blockContainer = document.createElement("div");
-            var sectionID = randomSectionID();
+            var blockID = randomBlockID();
+            if(blockID > 0){
+                currentBlock.id = blockID
+            }else{
+                return false;
+            }
 
             block.className = 'gomjz-block-text left-top-temp  draggable text-resizable';
             blockContainer.className = 'block-container'
-            block.dataset.sectionid = sectionID;
+            block.dataset.blockid = blockID;
 
             var content = document.createElement("div");
             content.className = 'block-content';
@@ -222,16 +243,17 @@
         Selector.css('color',color);
     }
 
-    var randomSectionID = function(){
+    var randomBlockID = function(){
         var id = parseInt(Math.random()*(1000000)+1,10);
         for(let i = 0;i++;i<100){
-            if($("block[data-sectionid="+id+"]").length<=0){
+            if($("block[data-blockid="+id+"]").length<=0){
                 break;
             }
             id = parseInt(Math.random()*(1000000)+1,10);
         }
         return id;
     }
+
 }());
 
 
