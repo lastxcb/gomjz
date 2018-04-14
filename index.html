@@ -6,18 +6,21 @@
     <title>仿易企秀</title>
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="plugins/bootstrap-modal/modal.css">
     <link rel="stylesheet" href="plugins/bootstrap-modal/modal.theme.css">
     <link rel="stylesheet" href="plugins/colpick/css/colpick.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="plugins/interact-1.3.3/interact.min.js"></script>
-    <script src="plugins/bootstrap-modal/modal.js"></script>
-    <script src="plugins/colpick/js/colpick.js"></script>
-
 </head>
 <body>
 <div style="display:flex;width:700px;margin:0 auto;">
+    <menu id="context-menu" class="context-menu">
+        <ul class="context-menu__items">
+            <li class="context-menu__item">
+                <a href="#" class="context-menu-delete context-menu__link" data-action="删除">删除</a>
+            </li>
+        </ul>
+    </menu>
 
     <div id="gomjz-toolbar" style="flex:1 0 100px">
         <div class="tool-text" style="background:#eee;height: 100px;width: 100px;line-height: 100px;text-align: center;margin:5px; " >新增文字</div>
@@ -27,7 +30,6 @@
     <div id="gomjz-viewport" style="flex:2 0 400px">
         <div id="gomjz-draw-restrict" style="background:#eee;border:1px solid #eee;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;margin:5px auto;width:407px;height:699px; " >
             <div id="gomjz-draw" style="height: 667px;width:375px;margin:15px;position:relative;background:white;overflow: scroll;">
-
 
             </div>
         </div>
@@ -45,54 +47,162 @@
             </div>
 
             <div class="nav1">
+                <section class="clearfix" style="padding: 8px 20px;font-size: 12px;">
+                    <div style="">
+                        <textarea class="text-content-editor" style="width:100%;font-size:14px;" rows="12" ></textarea>
+                    </div>
+                </section>
+
                 <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字颜色</label>
                     <div style="width: 70px;height: 30px;float:left;">
-                        <div class="text-color-picker" style="color:#000;font-size:12px;line-height:30px;text-align:center;width: 70px;height: 30px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;">
+                        <div class="text-color-picker md-input" style="text-indent: 0;text-align:center;">
                             #ffffff
                         </div>
                     </div>
                     <ul class="text-color-picker-pre" style="margin-left:5px;width: 80px;height: 30px;float:left;">
-                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#18cfa1" data-color="#000" style="background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#000000" data-color="#fff" style="background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#18cfa1" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#000000" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
                     </ul>
                 </section>
+
+
 
                 <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">背景颜色</label>
                     <div style="width: 70px;height: 30px;float:left;">
-                        <div class="text-bg-color-picker" style="color:#000;font-size:12px;line-height:30px;text-align:center;width: 70px;height: 30px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;">
+                        <div class="text-bg-color-picker md-input" style="text-indent: 0;text-align:center;">
                             #ffffff
                         </div>
                     </div>
                     <ul class="text-bg-color-picker-pre" style="margin-left:5px;width: 80px;height: 30px;float:left;">
-                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#18cfa1" data-color="#000" style="background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#000000" data-color="#fff" style="background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#18cfa1" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#000000" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
                     </ul>
                 </section>
                 <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <input class="slider" type="range" min="1" max="100" value="50">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">字体大小</label>
+                    <div style="width: 80px;height: 30px;float:left;">
+                        <input class="text-font-size-slider slider" type="range" min="12" max="50" value="18">
+                    </div>
+                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
+                        <p style="">
+                            <input class="text-font-size-input sm-input" type="number" value="18" min="12" max="50" step="1" />
+                        </p>
+                    </div>
                 </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">行高</label>
+                    <div style="width: 80px;height: 30px;float:left;">
+                        <input class="text-line-height-slider slider" type="range" min="0" max="5" value="1" step="0.1">
+                    </div>
+                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
+                        <p style="">
+                            <input class="text-line-height-input sm-input" type="number" value="1" min="0" max="5" step="0.1" />
+                        </p>
+                    </div>
+                </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">上边距</label>
+                    <div style="width: 80px;height: 30px;float:left;">
+                        <input class="text-padding-top-slider slider" type="range" min="0" max="50" value="0" step="1">
+                    </div>
+                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
+                        <p style="">
+                            <input class="text-padding-top-input sm-input" type="number" value="0" min="0" max="50" step="1" />
+                        </p>
+                    </div>
+                </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">下边距</label>
+                    <div style="width: 80px;height: 30px;float:left;">
+                        <input class="text-padding-bottom-slider slider" type="range" min="0" max="50" value="0" step="1">
+                    </div>
+                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
+                        <p style="">
+                            <input class="text-padding-bottom-input sm-input" type="number" value="0" min="0" max="50" step="1" />
+                        </p>
+                    </div>
+                </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">左边距</label>
+                    <div style="width: 80px;height: 30px;float:left;">
+                        <input class="text-padding-left-slider slider" type="range" min="0" max="50" value="0" step="1">
+                    </div>
+                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
+                        <p style="">
+                            <input class="text-padding-left-input sm-input" type="number" value="0" min="0" max="50" step="1" />
+                        </p>
+                    </div>
+                </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">右边距</label>
+                    <div style="width: 80px;height: 30px;float:left;">
+                        <input class="text-padding-right-slider slider" type="range" min="0" max="50" value="0" step="1">
+                    </div>
+                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
+                        <p style="">
+                            <input class="text-padding-right-input sm-input" type="number" value="0" min="0" max="50" step="1" />
+                        </p>
+                    </div>
+                </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字对齐</label>
+                    <ul style="width: 140px;height: 30px;float:left;">
+                        <button title="居左" class="text-text-align-button sm-button left-button fl active" value="left">
+                            <img style="display:block;margin:0 auto;" src="img/text-left.png" width="16" height="12" />
+                        </button>
+                        <button title="居中" class="text-text-align-button sm-button mid-button fl" value="center">
+                            <img style="display:block;margin:0 auto;" src="img/text-center.png" width="16" height="12" />
+                        </button>
+                        <button title="居右" class="text-text-align-button sm-button mid-button fl" value="right">
+                            <img style="display:block;margin:0 auto;" src="img/text-right.png" width="16" height="12" />
+                        </button>
+                        <button title="拉伸" class="text-text-align-button sm-button right-button fl" value="justify">
+                            <img style="display:block;margin:0 auto;" src="img/text-justify.png" width="16" height="12" />
+                        </button>
+                    </ul>
+                </section>
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字修饰</label>
+                    <ul style="width: 140px;height: 30px;float:left;">
+                        <button title="加粗" class="text-text-decoration-button sm-button left-button fl" value="bold">
+                            <img style="display:block;margin:0 auto;" src="img/text-bold.png" width="16" height="16" />
+                        </button>
+                        <button title="斜体" class="text-text-decoration-button sm-button mid-button fl" value="italic">
+                            <img style="display:block;margin:0 auto;" src="img/text-italic.png" width="16" height="16" />
+                        </button>
+                        <button title="下划线" class="text-text-decoration-button sm-button right-button fl" value="underline">
+                            <img style="display:block;margin:0 auto;" src="img/text-underline.png" width="16" height="16" />
+                        </button>
+                    </ul>
+                </section>
+
             </div>
         </div>
     </div>
 </div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="plugins/interact-1.3.3/interact.min.js"></script>
+<script src="plugins/bootstrap-modal/modal.js"></script>
+<script src="plugins/colpick/js/colpick.js"></script>
 <script>
 //editor
 ;(function(){
@@ -108,6 +218,20 @@
         interact('.gomjz-block-text').on('tap',function(event){
             const defaultTextColor = '#000000';
             const defaultTextBgColor = '#FFFFFF';
+            const defaultTextFontSize = '24';
+            const defaultTextLineHeight = '1';
+            const defaultTextPaddingTop = '0';
+            const defaultTextPaddingBottom = '0';
+            const defaultTextPaddingLeft = '0';
+            const defaultTextPaddingRight = '0';
+            const defaultTextTextAlign = 'left';
+            const defaultTextFontWeight = 'normal';
+            const defaultTextFontStyle = 'normal';
+            const defaultTextTextDecoration = 'none';
+            const defaultTextContent = '';
+
+
+
             var block = currentBlock.element = event.currentTarget?event.currentTarget:null;
             var blockEle= event.currentTarget;
             var propertyEle = $('#gomjz-properties');
@@ -122,8 +246,292 @@
             textBgColor = textBgColor==undefined?defaultTextBgColor:textBgColor;
             setColorPicker(textBgColorPickerEle,textBgColor);
 
+            var textFontSize = blockEle.dataset.fontSize;
+            textFontSize = textFontSize==undefined?defaultTextFontSize:textFontSize;
+            $('.text-font-size-input').val(textFontSize);
+            $('.text-font-size-slider').val(textFontSize);
+
+            var textLineHeight = blockEle.dataset.lineHeight;
+            textLineHeight = textLineHeight==undefined?defaultTextLineHeight:textLineHeight;
+            $('.text-line-height-input').val(textLineHeight);
+            $('.text-line-height-slider').val(textLineHeight);
+
+            var textPaddingTop = blockEle.dataset.paddingTop;
+            textPaddingTop = textPaddingTop==undefined?defaultTextPaddingTop:textPaddingTop;
+            $('.text-padding-top-input').val(textPaddingTop);
+            $('.text-padding-top-slider').val(textPaddingTop);
+
+            var textPaddingBottom = blockEle.dataset.paddingBottom;
+            textPaddingBottom = textPaddingBottom==undefined?defaultTextPaddingBottom:textPaddingBottom;
+            $('.text-padding-bottom-input').val(textPaddingBottom);
+            $('.text-padding-bottom-slider').val(textPaddingBottom);
+
+            var textPaddingLeft = blockEle.dataset.paddingLeft;
+            textPaddingLeft = textPaddingLeft==undefined?defaultTextPaddingLeft:textPaddingLeft;
+            $('.text-padding-left-input').val(textPaddingLeft);
+            $('.text-padding-left-slider').val(textPaddingLeft);
+
+            var textPaddingRight = blockEle.dataset.paddingRight;
+            textPaddingRight = textPaddingRight==undefined?defaultTextPaddingRight:textPaddingRight;
+            $('.text-padding-right-input').val(textPaddingRight);
+            $('.text-padding-right-slider').val(textPaddingRight);
+
+            var textTextAlign = blockEle.dataset.textAlign;
+            textTextAlign = textTextAlign==undefined?defaultTextTextAlign:textTextAlign;
+            $('.text-text-align-button').removeClass('active');
+            $('.text-text-align-button[value='+textTextAlign+']').addClass('active');
+
+            var textFontStyle = blockEle.dataset.fontStyle;
+            textFontStyle = textFontStyle==undefined?defaultTextFontStyle:textFontStyle;
+            if(textFontStyle == 'italic'){
+                $('.text-text-decoration-button[value=italic]').addClass('active');
+            }else{
+                $('.text-text-decoration-button[value=italic]').removeClass('active');
+            }
+
+            var textTextDecoration = blockEle.dataset.textDecoration;
+            textTextDecoration = textTextDecoration==undefined?defaultTextTextDecoration:textTextDecoration;
+            if(textTextDecoration == 'bold'){
+                $('.text-text-decoration-button[value=underline]').addClass('active');
+            }else{
+                $('.text-text-decoration-button[value=underline]').removeClass('active');
+            }
+
+            var textFontWeight = blockEle.dataset.fontWeight;
+            textFontWeight = textFontWeight==undefined?defaultTextFontWeight:textFontWeight;
+            if(textFontWeight == 'bold'){
+                $('.text-text-decoration-button[value=bold]').addClass('active');
+            }else{
+                $('.text-text-decoration-button[value=bold]').removeClass('active');
+            }
+
+            var textContent = blockEle.querySelector('.block-content').innerHTML;
+            textContent = textContent==undefined?defaultTextContent:textContent;
+
+            textContent = textContent.replace(/<br *\/?>/gi, '\n');
+            textContent = textContent.replace(/&nbsp;/gi, ' ');
+            $('.text-content-editor').val(textContent);
+
+
+
         });
 
+        $('.text-content-editor').on('change keypress paste input',function(){
+            var contentValue = $(this).val();
+
+            contentValue = contentValue.replace(/\r\n|\r|\n/g,"<br/>");
+            contentValue = contentValue.replace(/\s/g,"&nbsp;");
+
+            if(currentBlock.element){
+                $(currentBlock.element.querySelector('.block-content')).html(contentValue);
+            }
+        })
+
+        $('.text-text-decoration-button').on('click',function(){
+            var buttonValue = $(this).val();
+            if(currentBlock.element){
+                if(buttonValue == 'bold'){
+                    $(this).toggleClass('active');
+                    var blockContent = $(currentBlock.element).find('.block-content');
+
+                    if($(this).hasClass('active')){
+                        currentBlock.element.dataset.fontWeight = 'bold';
+                        blockContent.css('font-weight','bold');
+                    }else{
+                        currentBlock.element.dataset.fontWeight = 'normal';
+                        blockContent.css('font-weight','normal');
+                    }
+                }
+
+                if(buttonValue == 'italic'){
+                    $(this).toggleClass('active');
+                    var blockContent = $(currentBlock.element).find('.block-content');
+
+                    if($(this).hasClass('active')){
+                        currentBlock.element.dataset.fontStyle = 'italic';
+                        blockContent.css('font-style','italic');
+                    }else{
+                        currentBlock.element.dataset.fontStyle = 'normal';
+                        blockContent.css('font-style','normal');
+                    }
+                }
+
+                if(buttonValue == 'underline'){
+                    $(this).toggleClass('active');
+                    var blockContent = $(currentBlock.element).find('.block-content');
+
+                    if($(this).hasClass('active')){
+                        currentBlock.element.dataset.textDecoration = 'bold';
+                        blockContent.css('text-decoration','underline');
+                    }else{
+                        currentBlock.element.dataset.textDecoration = 'none';
+                        blockContent.css('text-decoration','none');
+                    }
+                }
+            }
+        })
+
+        $('.text-text-align-button').on('click',function(){
+            var align = $(this).val();
+            if(currentBlock.element){
+                $('.text-text-align-button').removeClass('active');
+                $('.text-text-align-button[value='+align+']').addClass('active');
+                currentBlock.element.dataset.textAlign = align;
+                var blockContent = $(currentBlock.element).find('.block-content');
+                if(align == 'justify'){
+                    blockContent.css('text-align',align);
+                    //blockContent.css('text-justify','inter-word');
+                    //blockContent.css('-ms-text-justify','inter-word');
+                }else{
+                    blockContent.css('text-align',align);
+                    //blockContent.css('text-justify','auto');
+                    //blockContent.css('-ms-text-justify','auto');
+
+                }
+            }
+        })
+
+        $('.text-padding-right-input').on('change keypress paste input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-right-slider').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingRight = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingRight = padding+ 'px';
+            }
+        })
+
+
+        $('.text-padding-right-slider').on('input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-right-input').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingRight = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingRight = padding+ 'px';
+            }
+        })
+
+        $('.text-padding-left-input').on('change keypress paste input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-left-slider').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingLeft = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingLeft = padding+ 'px';
+            }
+        })
+
+
+        $('.text-padding-left-slider').on('input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-left-input').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingLeft = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingLeft = padding+ 'px';
+            }
+        })
+
+        $('.text-padding-bottom-input').on('change keypress paste input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-bottom-slider').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingBottom = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingBottom = padding+ 'px';
+            }
+        })
+
+
+        $('.text-padding-bottom-slider').on('input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-bottom-input').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingBottom = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingBottom = padding+ 'px';
+            }
+        })
+
+
+        $('.text-padding-top-input').on('change keypress paste input',function(){
+            var padding = $(this).val();
+            if(padding<0 ||padding>50)padding=0;
+            $('.text-padding-top-slider').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingTop = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingTop = padding+ 'px';
+            }
+        })
+
+
+        $('.text-padding-top-slider').on('input',function(){
+            var padding = $(this).val();
+
+            if(padding<0 ||padding>50)padding=0;
+
+            $('.text-padding-top-input').val(padding);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.paddingTop = padding;
+                currentBlock.element.querySelector('.block-content').style.paddingTop = padding + 'px';
+            }
+        })
+
+
+        $('.text-line-height-input').on('change keypress paste input',function(){
+            var lineHeight = $(this).val();
+            if(lineHeight<0 ||lineHeight>5)lineHeight=1;
+            $('.text-font-size-slider').val(lineHeight);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.lineHeight = lineHeight;
+                currentBlock.element.querySelector('.block-content').style.lineHeight = lineHeight;
+            }
+        })
+
+
+        $('.text-line-height-slider').on('input',function(){
+            var lineHeight = $(this).val();
+            if(lineHeight<0 ||lineHeight>5)lineHeight=1;
+            $('.text-line-height-input').val(lineHeight);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.lineHeight = lineHeight;
+                currentBlock.element.querySelector('.block-content').style.lineHeight = lineHeight;
+            }
+        })
+
+        $('.text-font-size-input').on('change keypress paste input',function(){
+            var fontSize = $(this).val();
+            if(fontSize<12 ||fontSize>50)fontSize=24;
+            $('.text-font-size-slider').val(fontSize);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.fontSize = fontSize;
+                currentBlock.element.querySelector('.block-content').style.fontSize = fontSize+'px';
+            }
+        })
+
+
+        $('.text-font-size-slider').on('input',function(){
+            var fontSize = $(this).val();
+            if(fontSize<12 ||fontSize>50)fontSize=24;
+            $('.text-font-size-input').val(fontSize);
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.fontSize = fontSize;
+                currentBlock.element.querySelector('.block-content').style.fontSize = fontSize+'px';
+            }
+        })
 
         $('.text-color-picker').colpick({
             onSubmit:function(hsb,hex,rgb,el,bySetColor) {
@@ -173,7 +581,7 @@
         });
 
         $('.text-bg-color-picker-pre li').on('click',function(){
-            setColorPicker($('.text-color-picker'), $(this).attr('data-bgcolor') ,$(this).attr('data-color'));
+            setColorPicker($('.text-bg-color-picker'), $(this).attr('data-bgcolor') ,$(this).attr('data-color'));
 
             if(currentBlock.element){
                 currentBlock.element.dataset.textBgColor = $(this).attr('data-bgcolor');
@@ -233,13 +641,14 @@
                 return false;
             }
 
-            block.className = 'gomjz-block-text left-top-temp  draggable text-resizable';
+            block.className = 'gomjz-block gomjz-block-text left-top-temp  draggable text-resizable';
             blockContainer.className = 'block-container'
             block.dataset.blockid = blockID;
 
             var content = document.createElement("div");
             content.className = 'block-content';
             content.innerHTML= '点击此处编辑文字';
+            //content.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris.';
 
             blockContainer.appendChild(content);
 
@@ -254,7 +663,8 @@
 
             document.getElementById('gomjz-draw').appendChild(block);
 
-        })
+
+        });
         $('.tool-text').trigger('click');
 
 
@@ -315,6 +725,145 @@
         }
         return id;
     }
+
+    //context menu
+
+    var clickInsideElement = function( e, className ) {
+        var el = e.srcElement || e.target;
+
+        if ( el.classList.contains(className) ) {
+            return el;
+        } else {
+            while ( el = el.parentNode ) {
+                if ( el.classList && el.classList.contains(className) ) {
+                    return el;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    var getPosition = function(e) {
+        var posx = 0;
+        var posy = 0;
+
+        if (!e) var e = window.event;
+
+        if (e.pageX || e.pageY) {
+            posx = e.pageX;
+            posy = e.pageY;
+        } else if (e.clientX || e.clientY) {
+            posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+
+        return {
+            x: posx,
+            y: posy
+        }
+    }
+
+    var contextMenuLinkClassName = "context-menu__link";
+    var contextMenuActive = "context-menu--active";
+
+    var ContextItemClassName = "gomjz-block";
+    var ContextItemInContext;
+
+    var clickCoords;
+    var clickCoordsX;
+    var clickCoordsY;
+
+    var menu = document.querySelector("#context-menu");
+    var menuState = 0;
+    var menuWidth;
+    var menuHeight;
+
+    var windowWidth;
+    var windowHeight;
+
+    var contextListener = function(){
+        $(document).on('contextmenu',$('.gomjz-block'),function(e){
+
+            console.log(e)
+
+            ContextItemInContext = clickInsideElement( e, ContextItemClassName );
+
+            console.log(ContextItemInContext)
+
+            if ( ContextItemInContext ) {
+                e.preventDefault();
+                toggleMenuOn();
+                positionMenu(e);
+            } else {
+                ContextItemInContext = null;
+                toggleMenuOff();
+            }
+        })
+    }
+
+    var clickListener = function() {
+        document.addEventListener( "click", function(e) {
+            var clickeElIsLink = clickInsideElement( e, contextMenuLinkClassName );
+
+            if ( clickeElIsLink ) {
+                e.preventDefault();
+                menuItemListener( clickeElIsLink );
+            } else {
+                var button = e.which || e.button;
+                if ( button === 1 ) {
+                    toggleMenuOff();
+                }
+            }
+        });
+    }
+
+
+    var toggleMenuOn = function () {
+        if ( menuState !== 1 ) {
+            menuState = 1;
+            menu.classList.add( contextMenuActive );
+        }
+    }
+
+    var toggleMenuOff = function () {
+        if ( menuState !== 0 ) {
+            menuState = 0;
+            menu.classList.remove( contextMenuActive );
+        }
+    }
+
+    var positionMenu = function (e) {
+        clickCoords = getPosition(e);
+        clickCoordsX = clickCoords.x;
+        clickCoordsY = clickCoords.y;
+
+        menuWidth = menu.offsetWidth + 4;
+        menuHeight = menu.offsetHeight + 4;
+
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+
+        if ( (windowWidth - clickCoordsX) < menuWidth ) {
+            menu.style.left = windowWidth - menuWidth + "px";
+        } else {
+            menu.style.left = clickCoordsX + "px";
+        }
+
+        if ( (windowHeight - clickCoordsY) < menuHeight ) {
+            menu.style.top = windowHeight - menuHeight + "px";
+        } else {
+            menu.style.top = clickCoordsY + "px";
+        }
+    }
+
+    var menuItemListener = function ( link ) {
+        $(ContextItemInContext).remove();
+        toggleMenuOff();
+    }
+
+    contextListener();
+    clickListener();
 
 }());
 
