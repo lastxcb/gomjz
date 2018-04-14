@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>仿易企秀</title>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="plugins/bootstrap-modal/modal.css">
+    <link rel="stylesheet" href="plugins/bootstrap-modal/modal.theme.css">
+    <link rel="stylesheet" href="plugins/colpick/css/colpick.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="plugins/interact-1.3.3/interact.min.js"></script>
+    <script src="plugins/bootstrap-modal/modal.js"></script>
+    <script src="plugins/colpick/js/colpick.js"></script>
+
+</head>
+<body>
+<div style="display:flex;width:700px;margin:0 auto;">
+    <div id="gomjz-toolbar" style="flex:1 0 100px">
+        <div class="tool-text" style="background:#eee;height: 100px;width: 100px;line-height: 100px;text-align: center;margin:5px; " >新增文字</div>
+        <div class="tool-image" style="background:#eee;height: 100px;width: 100px;line-height: 100px;text-align: center;margin:5px; " >新增图片</div>
+        <div class="tool-video" style="background:#eee;height: 100px;width: 100px;line-height: 100px;text-align: center;margin:5px; " class="gomjz-text">新增视频</div>
+    </div>
+    <div id="gomjz-viewport" style="flex:2 0 400px">
+        <div id="gomjz-draw-restrict" style="background:#eee;border:1px solid #eee;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;margin:5px auto;width:407px;height:699px; " >
+            <div id="gomjz-draw" style="height: 667px;width:375px;margin:15px;position:relative;background:white;overflow: scroll;">
+            </div>
+        </div>
+    </div>
+    <div id="gomjz-properties" style="flex:1 0 262px">
+        <div style="background:#fff;border:1px solid #eee;width:262px;height:100%;margin:5px 15px; ">
+            <div style="height:60px;">
+                <ul class="top-nav clearfix" style="height:36px;margin:12px 19px;display: flex;
+    justify-content: center;list-style: none;">
+                    <li class="active">内容</li>
+                    <li>样式</li>
+                    <li>动画</li>
+                </ul>
+            </div>
+
+            <div class="nav1">
+                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字颜色</label>
+                    <div style="width: 70px;height: 30px;float:left;">
+                        <div class="text-color-picker" style="color:#000;font-size:12px;line-height:30px;text-align:center;width: 70px;height: 30px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;">
+                            #ffffff
+                        </div>
+                    </div>
+                    <ul class="text-color-picker-pre" style="margin-left:5px;width: 80px;height: 30px;float:left;">
+                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#18cfa1" data-color="#000" style="background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                        <li data-bgcolor="#000000" data-color="#fff" style="background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+//editor
+;(function(){
+    "use strict";
+    $(function(){
+        interact('.gomjz-block-text').on('tap',function(event){
+            const defaultTextColor = '#000000';
+
+            var blockEle= event.currentTarget;
+            var propertyEle = $('#gomjz-properties');
+
+
+            var textColor = blockEle.dataset.textColor;
+            textColor = textColor==undefined?defaultTextColor:textColor;
+
+
+        });
+
+
+        $('.text-color-picker').colpick({
+            onSubmit:function(hsb,hex,rgb,el,bySetColor) {
+                var color = '';
+                if(hsb.b>50){
+                    color = '#000';
+                }else{
+                    color = '#fff';
+                }
+                setColorPicker($(el), '#'+hex, color);
+                $(el).colpickHide();
+            }
+        });
+
+        $('.text-color-picker-pre li').on('click',function(){
+            setColorPicker($('.text-color-picker'), $(this).attr('data-bgcolor') ,$(this).attr('data-color'));
+        })
+
+        interact('.text-resizable').resizable({
+            // resize from all edges and corners
+            edges: { left: true, right: true, bottom: true, top: true },
+
+            // keep the edges inside the parent
+            restrictEdges: {
+                outer: '#gomjz-draw-restrict',
+                endOnly: true,
+                elementRect: { top: 0, left: 0, right: 1,bottom:Infinity }
+            },
+
+            // minimum size
+            restrictSize: {
+                min: { width: 100, height: 54 },
+            },
+
+            inertia: true,
+        }).on('resizemove', function (event) {
+            var target = event.target,
+                x = (parseFloat(target.getAttribute('data-x')) || 0),
+                y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+            // update the element's style
+            target.style.width  = event.rect.width + 'px';
+            target.style.height = event.rect.height + 'px';
+
+            // translate when resizing from top or left edges
+            x += event.deltaRect.left;
+            y += event.deltaRect.top;
+
+            target.style.webkitTransform = target.style.transform =
+                'translate(' + x + 'px,' + y + 'px)';
+
+            target.setAttribute('data-width', x);
+            target.setAttribute('data-height', y);
+        }).on('tap',function(event){
+            $(".resize-rec").css('visibility','hidden');
+            event.currentTarget.querySelector('.resize-rec').style.visibility = 'visible';
+        });
+
+        $(document).on('click','.block-content',function(){
+
+        })
+
+        $('.tool-text').on('click',function(){
+            var block = document.createElement("block");
+            var blockContainer = document.createElement("div");
+            var sectionID = randomSectionID();
+
+            block.className = 'gomjz-block-text left-top-temp  draggable text-resizable';
+            blockContainer.className = 'block-container'
+            block.dataset.sectionid = sectionID;
+
+            var content = document.createElement("div");
+            content.className = 'block-content';
+            content.innerHTML= '点击此处编辑文字';
+
+            blockContainer.appendChild(content);
+
+            var resizeRec = document.createElement("div");
+            resizeRec.className = 'resize-rec';
+
+            var recTpl = '<div class="line-n"></div><div class="line-e"></div><div class="line-s"></div><div class="line-w"></div><div class="circle-nw"></div><div class="circle-ne"></div><div class="circle-se"></div><div class="circle-sw"></div><div class="circle-n-c"><div class="cicle"></div></div><div class="circle-e-c"><div class="cicle"></div></div><div class="circle-s-c"><div class="cicle"></div></div> <div class="circle-w-c"><div class="cicle"></div></div>';
+            resizeRec.innerHTML = recTpl;
+
+            blockContainer.appendChild(resizeRec);
+            block.appendChild(blockContainer);
+
+            document.getElementById('gomjz-draw').appendChild(block);
+
+        })
+        $('.tool-text').trigger('click');
+
+
+
+        interact('.draggable')
+            .draggable({
+                // enable inertial throwing
+                inertia: true,
+                // keep the element within the area of it's parent
+                restrict: {
+                    restriction: "#gomjz-draw-restrict",
+                    endOnly: true,
+                    elementRect: { top: 0, left: 0, right: 1,bottom:0 }
+                },
+                // enable autoScroll
+                autoScroll: true,
+
+                // call this function on every dragmove event
+                onmove: dragMoveListener,
+                // call this function on every dragend event
+            });
+
+        function dragMoveListener (event) {
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+                target.style.transform =
+                    'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the posiion attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+
+        // this is used later in the resizing and gesture demos
+        window.dragMoveListener = dragMoveListener;
+    })
+
+    var setColorPicker = function(Selector,bgColor,color){
+        if(color===undefined)color = '#000000';
+
+        Selector.text(bgColor);
+        Selector.css('background-color',bgColor);
+        Selector.css('color',color);
+    }
+
+    var randomSectionID = function(){
+        var id = parseInt(Math.random()*(1000000)+1,10);
+        for(let i = 0;i++;i<100){
+            if($("block[data-sectionid="+id+"]").length<=0){
+                break;
+            }
+            id = parseInt(Math.random()*(1000000)+1,10);
+        }
+        return id;
+    }
+}());
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
