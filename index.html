@@ -40,19 +40,20 @@
             <div style="height:60px;">
                 <ul class="top-nav clearfix" style="height:36px;margin:12px 19px;display: flex;
     justify-content: center;list-style: none;">
-                    <li class="active">内容</li>
-                    <li>样式</li>
-                    <li>动画</li>
+                    <li class="properties-tab active" value="1">内容</li>
+                    <li class="properties-tab" value="2">样式</li>
+                    <li class="properties-tab" value="3">动画</li>
                 </ul>
             </div>
 
-            <div class="nav1">
+            <div class="properties-content properties-content1">
                 <section class="clearfix" style="padding: 8px 20px;font-size: 12px;">
                     <div style="">
                         <textarea class="text-content-editor" style="width:100%;font-size:14px;" rows="12" ></textarea>
                     </div>
                 </section>
-
+            </div>
+            <div class="properties-content properties-content2">
                 <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字颜色</label>
                     <div style="width: 70px;height: 30px;float:left;">
@@ -162,9 +163,10 @@
                         </p>
                     </div>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字对齐</label>
-                    <ul style="width: 140px;height: 30px;float:left;">
+
+                <section class="clearfix properties-section">
+                    <label class="properties-label">文字对齐</label>
+                    <ul class="fl" style="width: 140px;height: 30px;">
                         <button title="居左" class="text-text-align-button sm-button left-button fl active" value="left">
                             <img style="display:block;margin:0 auto;" src="img/text-left.png" width="16" height="12" />
                         </button>
@@ -193,7 +195,14 @@
                         </button>
                     </ul>
                 </section>
+            </div>
+            <div class="properties-content properties-content3">
+                <section class="clearfix" style="height:30px;padding-left:20px;margin-bottom:20px;">
+                    <select class="sm-select animation-list"></select>
+                    <button class="add-animation md-button">添加</button>
+                </section>
 
+                <div class="animation-container"></div>
             </div>
         </div>
     </div>
@@ -213,23 +222,253 @@
 
     var gomjzDraw = $('#gomjz-draw');
 
+    const animationsLib = {
+        'enter': {
+            'group_name':'进入',
+            'anims':[
+                {
+                    'ID':1001,
+                    'title':'淡入',
+                    'name':'fadein',
+                    'has_direction':true,
+                    'duration':1,
+                    'delay':0,
+                    'times':1
+                },
+                {
+                    'ID':1002,
+                    'title':'淡出',
+                    'name':'fadeout',
+                    'has_direction':false,
+                    'duration':1,
+                    'delay':0,
+                    'times':1
+                }
+            ]
+        },
+        'emphasis': {
+            'group_name':'强调',
+            'anims':[
+
+            ]
+        },
+        'out': {
+            'group_name':'退出',
+            'anims':[
+
+            ]
+        }
+    }
+
+    var findAnimationByID = function(animations,ID){
+        for(let g in animations){
+            for(let a in animationsLib[g].anims){
+                if(ID == animationsLib[g].anims[a].ID){
+                    return animationsLib[g].anims[a];
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+    var animateTapSetting =  function(animations){
+        $('.animation-container').html('');
+        if(animations) {
+            animations = JSON.parse(animations);
+            addAnimation(animations);
+        }
+    }
+
+    var addAnimation = function(animations){
+        var tpl = '';
+        for(let anm in animations){
+            tpl = '';
+            tpl += '<div data-name = "'+animations[anm].name+'" data-title = "'+animations[anm].title+'" class="animation-group">\n' +
+                '  <label class="animation-group-label"><span class="del-animation"><img src="img/del.png" width="20" height="20" /></span>' + animations[anm].title + '动画' +'</label>';
+            if(animations[anm].has_direction){
+                tpl += '<section class="clearfix properties-section">\n' +
+                    '    <label class="properties-label">方向</label>\n' +
+                    '    <div class="animation-select">\n' +
+                    '    <select class="direction-anselect sm-select">\n' +
+                    '        <option value="ttb">从上向下</option>\n'+
+                    '        <option value="btt">从下向上</option>\n'+
+                    '        <option value="ltr">从左向右</option>\n'+
+                    '        <option value="rtl">从右向左</option>\n'+
+                    '    </select>\n'+
+                    '    </div>\n' +
+                    '    </section>';
+            }
+            tpl += '<section class="clearfix properties-section">\n' +
+                '    <label class="properties-label">动画时间</label>\n' +
+                '    <div class="animation-slider">\n' +
+                '    <input class="duration-anslir slider" type="range" min="0" max="20" value="'+ animations[anm].duration +'" step="0.1">\n' +
+                '    </div>\n' +
+                '    <div class="animation-input">\n' +
+                '    <input class="duration-aninput sm-input" type="number" value="'+ animations[anm].duration +'" min="0" max="20" step="0.1" />\n' +
+                '    </div>\n' +
+                '    </section>';
+            tpl += '<section class="clearfix properties-section">\n' +
+                '    <label class="properties-label">延迟时间</label>\n' +
+                '    <div class="animation-slider">\n' +
+                '    <input class="delay-anslir slider" type="range" min="0" max="20" value="'+ animations[anm].delay +'" step="0.1">\n' +
+                '    </div>\n' +
+                '    <div class="animation-input">\n' +
+                '    <input class="delay-aninput sm-input" type="number" value="'+ animations[anm].delay +'" min="0" max="20" step="0.1" />\n' +
+                '    </div>\n' +
+                '    </section>';
+            tpl += '<section class="clearfix properties-section">\n' +
+                '    <label class="properties-label">播放次数</label>\n' +
+                '    <div class="animation-slider">\n' +
+                '    <input class="times-anslir slider" type="range" min="1" max="10" value="'+ animations[anm].times +'" step="1">\n' +
+                '    </div>\n' +
+                '    <div class="animation-input">\n' +
+                '    <input class="times-aninput sm-input" type="number" value="'+ animations[anm].times +'" min="1" max="10" step="1" />\n' +
+                '    </div>\n' +
+                '    </section>';
+            tpl += '</div>';
+
+            //
+            var dom = $(tpl);
+            dom.find('.duration-anslir').bind('input',durationAnslirEvent);
+            dom.find('.duration-aninput').bind('change keypress paste input',durationInputEvent);
+            dom.find('.delay-anslir').bind('input',delayAnslirEvent);
+            dom.find('.delay-aninput').bind('change keypress paste input',delayInputEvent);
+            dom.find('.times-anslir').bind('input',timesAnslirEvent);
+            dom.find('.times-aninput').bind('change keypress paste input',timesInputEvent);
+            dom.find('.direction-anselect').bind('change keypress',directionAnselectEvent);
+            dom.find('.del-animation').bind('click',delAnimation);
+
+            $('.animation-container').append(dom);
+
+            //console.log(tpl);
+        }
+    }
+
+    var delAnimation = function(e){
+        var value = $(e.target).parent().parent().parent().remove();
+    }
+    var durationAnslirEvent = function(e){
+        var value = e.target.value;
+        if(value<0 ||value>20){value=1;e.target.value =value}
+        $(e.target).parent().parent().find('.duration-aninput').val(value);
+        setCurrentBlockAnimation();
+    }
+    var durationInputEvent = function(e){
+        var value = e.target.value;
+        if(value<0 ||value>20){value=1;e.target.value =value}
+        $(e.target).parent().parent().find('.duration-anslir').val(value);
+        setCurrentBlockAnimation();
+    }
+    var delayAnslirEvent = function(e){
+        var value = e.target.value;
+        if(value<0 ||value>20){value=0;e.target.value =value}
+        $(e.target).parent().parent().find('.delay-aninput').val(value);
+        setCurrentBlockAnimation();
+    }
+    var delayInputEvent = function(e){
+        var value = e.target.value;
+        if(value<0 ||value>20){value=0;e.target.value =value}
+        $(e.target).parent().parent().find('.delay-anslir').val(value);
+        setCurrentBlockAnimation();
+    }
+    var timesAnslirEvent = function(e){
+        var value = e.target.value;
+        if(value<0 ||value>10){value=1;e.target.value =value}
+        $(e.target).parent().parent().find('.times-aninput').val(value);
+        setCurrentBlockAnimation();
+    }
+    var timesInputEvent = function(e){
+        var value = e.target.value;
+        if(value<0 ||value>10){value=1;e.target.value =value}
+        $(e.target).parent().parent().find('.times-anslir').val(value);
+        setCurrentBlockAnimation();
+    }
+    var directionAnselectEvent = function(){
+        setCurrentBlockAnimation();
+    }
+
+   //[{"title":"淡入","name":"fadein","has_direction":true,"duration":2,"delay":0,"times":1},{"title":"淡出","name":"fadeout","has_direction":false,"duration":1,"delay":2,"times":1}]
+
+    var setCurrentBlockAnimation = function(){
+        var aniJSON = [];
+        $('.animation-container').find('.animation-group').each(function(){
+            var title = this.dataset.title;
+            var name = this.dataset.name;
+            var hasDirection = false;
+            var duration = this.querySelector('.duration-aninput').value;
+            var delay = this.querySelector('.delay-aninput').value;
+            var times = this.querySelector('.times-aninput').value;
+            if(this.querySelector('.animation-select')){hasDirection=true;}
+            aniJSON.push(
+                {
+                    title:title,
+                    name:name,
+                    has_direction:hasDirection,
+                    duration:duration,
+                    delay:delay,
+                    times:times
+                }
+            );
+        })
+
+        if(currentBlock.element){
+            currentBlock.element.dataset.animations = JSON.stringify(aniJSON);
+        }
+    }
+
+
+
     $(function(){
+        var animListHtml = '';
+        for(let g in animationsLib){
+            animListHtml += '<optgroup label="'+animationsLib[g].group_name+'">';
+            for(let a in animationsLib[g].anims){
+                animListHtml += '<option value="'+animationsLib[g].anims[a].ID+'">';
+                animListHtml += animationsLib[g].anims[a].title;
+                animListHtml += '</option>';
+            }
+            animListHtml += '</optgroup>';
+        }
+        var animListDom = $(animListHtml);
+        $('.animation-list').html(animListDom);
+
+        $('.add-animation').on('click',function(){
+            var id = $('.animation-list').val();
+            if(id){
+                var anim = findAnimationByID(animationsLib,id);
+                if(anim){
+                    addAnimation([anim]);
+                    setCurrentBlockAnimation();
+                }
+            }
+        })
+
+        $('.properties-tab').on('click',function(){
+            if(currentBlock.element) {
+                $('.properties-tab').removeClass('active');
+                $(this).addClass('active');
+                $('.properties-content').hide();
+                $('.properties-content'+$(this).val()).show();
+            }
+        })
+
 
         interact('.gomjz-block-text').on('tap',function(event){
             const defaultTextColor = '#000000';
             const defaultTextBgColor = '#FFFFFF';
-            const defaultTextFontSize = '24';
-            const defaultTextLineHeight = '1';
-            const defaultTextPaddingTop = '0';
-            const defaultTextPaddingBottom = '0';
-            const defaultTextPaddingLeft = '0';
-            const defaultTextPaddingRight = '0';
+            const defaultTextFontSize = 24;
+            const defaultTextLineHeight = 1;
+            const defaultTextPaddingTop = 0;
+            const defaultTextPaddingBottom = 0;
+            const defaultTextPaddingLeft = 0;
+            const defaultTextPaddingRight = 0;
             const defaultTextTextAlign = 'left';
             const defaultTextFontWeight = 'normal';
             const defaultTextFontStyle = 'normal';
             const defaultTextTextDecoration = 'none';
             const defaultTextContent = '';
-
 
 
             var block = currentBlock.element = event.currentTarget?event.currentTarget:null;
@@ -313,6 +552,13 @@
             $('.text-content-editor').val(textContent);
 
 
+            var animations = blockEle.dataset.animations;
+            animateTapSetting(animations);
+
+            $('.properties-tab').removeClass('active');
+            $('.properties-tab[value=1]').addClass('active');
+            $('.properties-content').hide();
+            $('.properties-content1').show();
 
         });
 
@@ -393,7 +639,7 @@
 
         $('.text-padding-right-input').on('change keypress paste input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-right-slider').val(padding);
 
             if(currentBlock.element){
@@ -405,7 +651,7 @@
 
         $('.text-padding-right-slider').on('input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-right-input').val(padding);
 
             if(currentBlock.element){
@@ -416,7 +662,7 @@
 
         $('.text-padding-left-input').on('change keypress paste input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-left-slider').val(padding);
 
             if(currentBlock.element){
@@ -428,7 +674,7 @@
 
         $('.text-padding-left-slider').on('input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-left-input').val(padding);
 
             if(currentBlock.element){
@@ -439,7 +685,7 @@
 
         $('.text-padding-bottom-input').on('change keypress paste input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-bottom-slider').val(padding);
 
             if(currentBlock.element){
@@ -451,7 +697,7 @@
 
         $('.text-padding-bottom-slider').on('input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-bottom-input').val(padding);
 
             if(currentBlock.element){
@@ -463,7 +709,7 @@
 
         $('.text-padding-top-input').on('change keypress paste input',function(){
             var padding = $(this).val();
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
             $('.text-padding-top-slider').val(padding);
 
             if(currentBlock.element){
@@ -476,7 +722,7 @@
         $('.text-padding-top-slider').on('input',function(){
             var padding = $(this).val();
 
-            if(padding<0 ||padding>50)padding=0;
+            if(padding<0 ||padding>50){padding=0;$(this).val(padding);}
 
             $('.text-padding-top-input').val(padding);
 
@@ -489,7 +735,7 @@
 
         $('.text-line-height-input').on('change keypress paste input',function(){
             var lineHeight = $(this).val();
-            if(lineHeight<0 ||lineHeight>5)lineHeight=1;
+            if(lineHeight<0 ||lineHeight>5){lineHeight=1;$(this).val(lineHeight);}
             $('.text-font-size-slider').val(lineHeight);
 
             if(currentBlock.element){
@@ -501,7 +747,7 @@
 
         $('.text-line-height-slider').on('input',function(){
             var lineHeight = $(this).val();
-            if(lineHeight<0 ||lineHeight>5)lineHeight=1;
+            if(lineHeight<0 ||lineHeight>5){lineHeight=1;$(this).val(lineHeight);}
             $('.text-line-height-input').val(lineHeight);
 
             if(currentBlock.element){
@@ -512,7 +758,7 @@
 
         $('.text-font-size-input').on('change keypress paste input',function(){
             var fontSize = $(this).val();
-            if(fontSize<12 ||fontSize>50)fontSize=24;
+            if(fontSize<12 ||fontSize>50){fontSize=24;$(this).val(fontSize);}
             $('.text-font-size-slider').val(fontSize);
 
             if(currentBlock.element){
@@ -524,7 +770,7 @@
 
         $('.text-font-size-slider').on('input',function(){
             var fontSize = $(this).val();
-            if(fontSize<12 ||fontSize>50)fontSize=24;
+            if(fontSize<12 ||fontSize>50){fontSize=24;$(this).val(fontSize);}
             $('.text-font-size-input').val(fontSize);
 
             if(currentBlock.element){
@@ -642,7 +888,7 @@
             }
 
             block.className = 'gomjz-block gomjz-block-text left-top-temp  draggable text-resizable';
-            blockContainer.className = 'block-container'
+            blockContainer.className = 'block-container';
             block.dataset.blockid = blockID;
 
             var content = document.createElement("div");
@@ -785,11 +1031,8 @@
     var contextListener = function(){
         $(document).on('contextmenu',$('.gomjz-block'),function(e){
 
-            console.log(e)
-
             ContextItemInContext = clickInsideElement( e, ContextItemClassName );
 
-            console.log(ContextItemInContext)
 
             if ( ContextItemInContext ) {
                 e.preventDefault();

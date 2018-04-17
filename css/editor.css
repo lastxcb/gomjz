@@ -4,10 +4,70 @@
     -ms-user-select: none; /* IE 10+ */
     user-select: none ; /* Standard syntax */
 }
+.properties-content{
+    display:none;
+}
+.animation-group-label{
+    background: #f6f9fa;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    border-top: 1px solid #e6ebed;
+    border-bottom: 1px solid #e6ebed;
+    position:relative;
+}
+.del-animation{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    right:5px;
+    bottom:10px;
+    position:absolute;
+    cursor:pointer;
+}
+.animation-select{
+    width:150px;
+    height:30px;
+    float:left;
+}
+.sm-select{
+    width: 150px;
+    border: 1px solid #c9c9c9;
+    box-sizing: border-box;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 3px;
+}
+.animation-slider{
+    width: 80px;height: 30px;float:left;
+}
+.animation-input{
+    width: 60px;margin-left:10px;height: 30px;float:left;
+}
+.animation-group-label{
+    display: inline-block;
+    height:30px;
+    line-height: 30px;
+    width:100%;
+    text-align: center;
+    font-size:14px;
+}
+
+.properties-section{
+    padding: 8px 20px;height:46px;font-size: 12px;
+}
+.properties-label{font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px}
+
 .sm-button:hover{
     background: #f6f6f6;
 }
 .sm-button.active{
+    background: #eeeeee;
+}
+.md-button:hover{
+    background: #f6f6f6;
+}
+.md-button.active{
     background: #eeeeee;
 }
 .sm-button{
