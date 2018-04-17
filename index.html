@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="plugins/colpick/css/colpick.css">
 </head>
 <body>
+
 <div style="display:flex;width:700px;margin:0 auto;">
     <menu id="context-menu" class="context-menu">
         <ul class="context-menu__items">
@@ -47,14 +48,26 @@
             </div>
 
             <div class="properties-content properties-content1">
-                <section class="clearfix" style="padding: 8px 20px;font-size: 12px;">
+                <section class="clearfix properties-section text-section" style="padding: 8px 20px;font-size: 12px;">
                     <div style="">
                         <textarea class="text-content-editor" style="width:100%;font-size:14px;" rows="12" ></textarea>
                     </div>
                 </section>
+                <section class="clearfix properties-section image-section" style="padding: 8px 20px;font-size: 12px;">
+                    <div style="">
+                        <img src='' class='img-preview'/>
+
+                        <input class="image-content-editor" type="file"  required/>
+                    </div>
+                </section>
+                <section class="clearfix properties-section video-section" style="padding: 8px 20px;font-size: 12px;">
+                    <div style="">
+                        <input class="video-content-editor" type="text" style="width:100%;font-size:14px;" rows="12" placeholder="视频地址" />
+                    </div>
+                </section>
             </div>
             <div class="properties-content properties-content2">
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字颜色</label>
                     <div style="width: 70px;height: 30px;float:left;">
                         <div class="text-color-picker md-input" style="text-indent: 0;text-align:center;">
@@ -77,7 +90,7 @@
 
 
 
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section image-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">背景颜色</label>
                     <div style="width: 70px;height: 30px;float:left;">
                         <div class="text-bg-color-picker md-input" style="text-indent: 0;text-align:center;">
@@ -97,7 +110,7 @@
                         <li data-bgcolor="#000000" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
                     </ul>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">字体大小</label>
                     <div style="width: 80px;height: 30px;float:left;">
                         <input class="text-font-size-slider slider" type="range" min="12" max="50" value="18">
@@ -108,7 +121,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">行高</label>
                     <div style="width: 80px;height: 30px;float:left;">
                         <input class="text-line-height-slider slider" type="range" min="0" max="5" value="1" step="0.1">
@@ -119,7 +132,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">上边距</label>
                     <div style="width: 80px;height: 30px;float:left;">
                         <input class="text-padding-top-slider slider" type="range" min="0" max="50" value="0" step="1">
@@ -130,7 +143,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">下边距</label>
                     <div style="width: 80px;height: 30px;float:left;">
                         <input class="text-padding-bottom-slider slider" type="range" min="0" max="50" value="0" step="1">
@@ -141,7 +154,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">左边距</label>
                     <div style="width: 80px;height: 30px;float:left;">
                         <input class="text-padding-left-slider slider" type="range" min="0" max="50" value="0" step="1">
@@ -152,7 +165,7 @@
                         </p>
                     </div>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">右边距</label>
                     <div style="width: 80px;height: 30px;float:left;">
                         <input class="text-padding-right-slider slider" type="range" min="0" max="50" value="0" step="1">
@@ -164,7 +177,7 @@
                     </div>
                 </section>
 
-                <section class="clearfix properties-section">
+                <section class="properties-section text-section clearfix properties-section">
                     <label class="properties-label">文字对齐</label>
                     <ul class="fl" style="width: 140px;height: 30px;">
                         <button title="居左" class="text-text-align-button sm-button left-button fl active" value="left">
@@ -181,7 +194,7 @@
                         </button>
                     </ul>
                 </section>
-                <section class="clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
+                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
                     <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字修饰</label>
                     <ul style="width: 140px;height: 30px;float:left;">
                         <button title="加粗" class="text-text-decoration-button sm-button left-button fl" value="bold">
@@ -421,6 +434,33 @@
 
 
     $(function(){
+        $('.image-content-editor').on('change',function(){
+            var files = this.files;
+            var file = files[0];
+
+            // You can get the mime type like this.
+            var thumbMIME = files[0]['name'].split('.').pop();
+            if (files && file) {
+                var reader = new FileReader();
+
+                reader.onload = function(readerEvt) {
+                    var binaryString = readerEvt.target.result.split(',')[1];//图片源数据
+                    console.log(binaryString);
+
+                    console.log(readerEvt.target.result);
+
+                    $('.img-preview').prop('src', readerEvt.target.result);//浏览器缓存dataurl数据，非图片源数据
+
+                    if(currentBlock.element){
+
+                        $(currentBlock.element).find('.block-content-img').prop('src',readerEvt.target.result);
+                    }
+
+                }.bind(this);
+                reader.readAsDataURL(file);
+            }
+        })
+
         var animListHtml = '';
         for(let g in animationsLib){
             animListHtml += '<optgroup label="'+animationsLib[g].group_name+'">';
@@ -469,6 +509,9 @@
             const defaultTextFontStyle = 'normal';
             const defaultTextTextDecoration = 'none';
             const defaultTextContent = '';
+
+            $('.properties-section').hide();
+            $('.text-section').show();
 
 
             var block = currentBlock.element = event.currentTarget?event.currentTarget:null;
@@ -550,6 +593,112 @@
             textContent = textContent.replace(/<br *\/?>/gi, '\n');
             textContent = textContent.replace(/&nbsp;/gi, ' ');
             $('.text-content-editor').val(textContent);
+
+
+            var animations = blockEle.dataset.animations;
+            animateTapSetting(animations);
+
+            $('.properties-tab').removeClass('active');
+            $('.properties-tab[value=1]').addClass('active');
+            $('.properties-content').hide();
+            $('.properties-content1').show();
+
+        });
+
+        interact('.gomjz-block-image').on('tap',function(event){
+            const defaultTextBgColor = '#FFFFFF';
+            const defaultTextPaddingTop = 0;
+            const defaultTextPaddingBottom = 0;
+            const defaultTextPaddingLeft = 0;
+            const defaultTextPaddingRight = 0;
+            const defaultTextContent = '';
+
+            $('.properties-section').hide();
+            $('.image-section').show();
+
+            var block = currentBlock.element = event.currentTarget?event.currentTarget:null;
+            var blockEle= event.currentTarget;
+            var propertyEle = $('#gomjz-properties');
+
+            var textBgColor = blockEle.dataset.textColor;
+            var textBgColorPickerEle = propertyEle.find('.text-bg-color-picker');
+            textBgColor = textBgColor==undefined?defaultTextBgColor:textBgColor;
+            setColorPicker(textBgColorPickerEle,textBgColor);
+
+            var textPaddingTop = blockEle.dataset.paddingTop;
+            textPaddingTop = textPaddingTop==undefined?defaultTextPaddingTop:textPaddingTop;
+            $('.text-padding-top-input').val(textPaddingTop);
+            $('.text-padding-top-slider').val(textPaddingTop);
+
+            var textPaddingBottom = blockEle.dataset.paddingBottom;
+            textPaddingBottom = textPaddingBottom==undefined?defaultTextPaddingBottom:textPaddingBottom;
+            $('.text-padding-bottom-input').val(textPaddingBottom);
+            $('.text-padding-bottom-slider').val(textPaddingBottom);
+
+            var textPaddingLeft = blockEle.dataset.paddingLeft;
+            textPaddingLeft = textPaddingLeft==undefined?defaultTextPaddingLeft:textPaddingLeft;
+            $('.text-padding-left-input').val(textPaddingLeft);
+            $('.text-padding-left-slider').val(textPaddingLeft);
+
+            var textPaddingRight = blockEle.dataset.paddingRight;
+            textPaddingRight = textPaddingRight==undefined?defaultTextPaddingRight:textPaddingRight;
+            $('.text-padding-right-input').val(textPaddingRight);
+            $('.text-padding-right-slider').val(textPaddingRight);
+
+            var textContent = blockEle.querySelector('.block-content-img').src;
+            textContent = textContent==undefined?defaultTextContent:textContent;
+
+            $('.img-preview').prop('src',textContent);
+
+
+            var animations = blockEle.dataset.animations;
+            animateTapSetting(animations);
+
+            $('.properties-tab').removeClass('active');
+            $('.properties-tab[value=1]').addClass('active');
+            $('.properties-content').hide();
+            $('.properties-content1').show();
+
+        });
+
+        interact('.gomjz-block-video').on('tap',function(event){
+            const defaultTextPaddingTop = 0;
+            const defaultTextPaddingBottom = 0;
+            const defaultTextPaddingLeft = 0;
+            const defaultTextPaddingRight = 0;
+            const defaultTextContent = '';
+
+            $('.properties-section').hide();
+            $('.video-section').show();
+
+            var block = currentBlock.element = event.currentTarget?event.currentTarget:null;
+            var blockEle= event.currentTarget;
+            var propertyEle = $('#gomjz-properties');
+
+            var textPaddingTop = blockEle.dataset.paddingTop;
+            textPaddingTop = textPaddingTop==undefined?defaultTextPaddingTop:textPaddingTop;
+            $('.text-padding-top-input').val(textPaddingTop);
+            $('.text-padding-top-slider').val(textPaddingTop);
+
+            var textPaddingBottom = blockEle.dataset.paddingBottom;
+            textPaddingBottom = textPaddingBottom==undefined?defaultTextPaddingBottom:textPaddingBottom;
+            $('.text-padding-bottom-input').val(textPaddingBottom);
+            $('.text-padding-bottom-slider').val(textPaddingBottom);
+
+            var textPaddingLeft = blockEle.dataset.paddingLeft;
+            textPaddingLeft = textPaddingLeft==undefined?defaultTextPaddingLeft:textPaddingLeft;
+            $('.text-padding-left-input').val(textPaddingLeft);
+            $('.text-padding-left-slider').val(textPaddingLeft);
+
+            var textPaddingRight = blockEle.dataset.paddingRight;
+            textPaddingRight = textPaddingRight==undefined?defaultTextPaddingRight:textPaddingRight;
+            $('.text-padding-right-input').val(textPaddingRight);
+            $('.text-padding-right-slider').val(textPaddingRight);
+
+            var textContent = blockEle.dataset.videoUrl;
+            textContent = textContent==undefined?defaultTextContent:textContent;
+
+            $('.video-content-editor').val(textContent);
 
 
             var animations = blockEle.dataset.animations;
@@ -835,6 +984,14 @@
             }
         })
 
+        $('.video-content-editor').on('change keypress paste input',function(){
+            var contentValue = $(this).val();
+
+            if(currentBlock.element){
+                currentBlock.element.dataset.videoUrl = contentValue;
+            }
+        })
+
         interact('.text-resizable').resizable({
             // resize from all edges and corners
             edges: { left: true, right: true, bottom: true, top: true },
@@ -894,7 +1051,6 @@
             var content = document.createElement("div");
             content.className = 'block-content';
             content.innerHTML= '点击此处编辑文字';
-            //content.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris.';
 
             blockContainer.appendChild(content);
 
@@ -911,7 +1067,76 @@
 
 
         });
-        $('.tool-text').trigger('click');
+
+        $('.tool-image').on('click',function(){
+            var block = document.createElement("block");
+            block.dataset.imageUrl = '';
+            var blockContainer = document.createElement("div");
+            var blockID = randomBlockID();
+            if(blockID > 0){
+                currentBlock.id = blockID
+            }else{
+                return false;
+            }
+
+            block.className = 'gomjz-block gomjz-block-image left-top-temp  draggable text-resizable';
+            blockContainer.className = 'block-container';
+            block.dataset.blockid = blockID;
+
+            var content = document.createElement("div");
+            content.className = 'block-content';
+            content.innerHTML= '<img class="block-content-img" width="100%" height="100%" src="img/image.png" />';
+
+            blockContainer.appendChild(content);
+
+            var resizeRec = document.createElement("div");
+            resizeRec.className = 'resize-rec';
+
+            var recTpl = '<div class="line-n"></div><div class="line-e"></div><div class="line-s"></div><div class="line-w"></div><div class="circle-nw"></div><div class="circle-ne"></div><div class="circle-se"></div><div class="circle-sw"></div><div class="circle-n-c"><div class="cicle"></div></div><div class="circle-e-c"><div class="cicle"></div></div><div class="circle-s-c"><div class="cicle"></div></div> <div class="circle-w-c"><div class="cicle"></div></div>';
+            resizeRec.innerHTML = recTpl;
+
+            blockContainer.appendChild(resizeRec);
+            block.appendChild(blockContainer);
+
+            document.getElementById('gomjz-draw').appendChild(block);
+
+
+        });
+
+        $('.tool-video').on('click',function(){
+            var block = document.createElement("block");
+            block.dataset.videoUrl = '';
+            var blockContainer = document.createElement("div");
+            var blockID = randomBlockID();
+            if(blockID > 0){
+                currentBlock.id = blockID
+            }else{
+                return false;
+            }
+
+            block.className = 'gomjz-block gomjz-block-video left-top-temp  draggable text-resizable';
+            blockContainer.className = 'block-container';
+            block.dataset.blockid = blockID;
+
+            var content = document.createElement("div");
+            content.className = 'block-content';
+            content.innerHTML= '<img width="100%" height="100%" src="img/video.png" />';
+
+            blockContainer.appendChild(content);
+
+            var resizeRec = document.createElement("div");
+            resizeRec.className = 'resize-rec';
+
+            var recTpl = '<div class="line-n"></div><div class="line-e"></div><div class="line-s"></div><div class="line-w"></div><div class="circle-nw"></div><div class="circle-ne"></div><div class="circle-se"></div><div class="circle-sw"></div><div class="circle-n-c"><div class="cicle"></div></div><div class="circle-e-c"><div class="cicle"></div></div><div class="circle-s-c"><div class="cicle"></div></div> <div class="circle-w-c"><div class="cicle"></div></div>';
+            resizeRec.innerHTML = recTpl;
+
+            blockContainer.appendChild(resizeRec);
+            block.appendChild(blockContainer);
+
+            document.getElementById('gomjz-draw').appendChild(block);
+
+
+        });
 
 
 
@@ -1107,6 +1332,9 @@
 
     contextListener();
     clickListener();
+
+
+
 
 }());
 

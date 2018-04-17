@@ -4,8 +4,25 @@
     -ms-user-select: none; /* IE 10+ */
     user-select: none ; /* Standard syntax */
 }
+.img-preview{
+    margin: 15px auto;
+    display: block;
+    width:100%;
+}
+input[type=text]{
+    background-color: #fff;
+    border: 1px solid rgb(204, 213, 219);
+    text-indent: .2em;
+    border-radius: 3px;
+    padding: 0 5px;
+    line-height:30px;
+    font-size:12px;
+}
 .properties-content{
     display:none;
+}
+.video-content-editor{
+    width: 120px;height: 30px;float:left;
 }
 .animation-group-label{
     background: #f6f9fa;
@@ -223,6 +240,8 @@ textarea{
 .dsp-inline-block{display:inline-block;}
 .left-top-temp{position:absolute;top:15px;left:15px;}
 .gomjz-block-text{text-align:left;padding:15px;width:auto;height:auto;font-size:24px;line-height:1;word-wrap: break-word;word-break: break-all;}
+.gomjz-block-image{text-align:left;padding:15px;width:auto;height:auto;font-size:24px;line-height:1;word-wrap: break-word;word-break: break-all;}
+.gomjz-block-video{text-align:left;padding:15px;width:auto;height:auto;font-size:24px;line-height:1;word-wrap: break-word;word-break: break-all;}
 .resize-rec{
     position:absolute;
     height: 100%;
@@ -242,7 +261,7 @@ textarea{
     -webkit-margin-end: 0px;/*兼容text-align:jusitfy*/
 }
 /*兼容text-align:jusitfy*/
-.block-content:after{
+.gomjz-block-text .block-content:after{
     content: "";
     display: inline-block;
     width: 100%;
