@@ -983,7 +983,13 @@
         return id;
     }
 
-    //context menu
+    //编辑器viewport 视窗移动
+    $('#gomjz-viewport').scroll(function(e){
+        console.log(e);
+    } )
+
+
+    //context menu start
 
     var clickInsideElement = function( e, className ) {
         var el = e.srcElement || e.target;
@@ -1118,7 +1124,6 @@
 
     contextListener();
     clickListener();
-
 
 
 

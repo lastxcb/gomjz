@@ -7,28 +7,34 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="plugins/bootstrap-modal/modal.css">
     <link rel="stylesheet" href="plugins/bootstrap-modal/modal.theme.css">
     <link rel="stylesheet" href="plugins/colpick/css/colpick.css">
 </head>
 <body>
+<div id="gomjz-top-toolbar" >
+    头
 
-<div style="display:flex;width:700px;margin:0 auto;">
-    <menu id="context-menu" class="context-menu">
-        <ul class="context-menu__items">
-            <li class="context-menu__item">
-                <a href="#" class="context-menu-delete context-menu__link" data-action="删除">删除</a>
-            </li>
-        </ul>
-    </menu>
+</div>
+<menu id="context-menu" class="context-menu">
+    <ul class="context-menu__items">
+        <li class="context-menu__item">
+            <a href="#" class="context-menu-delete context-menu__link" data-action="删除">删除</a>
+        </li>
+    </ul>
+</menu>
+<div id="gomjz-main-content" >
 
-    <div id="gomjz-toolbar" style="flex:1 0 100px;">
+
+    <div id="gomjz-toolbar">
         <div class="tool-text" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " >+文字</div>
         <div class="tool-image" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " >+图片</div>
-        <div class="tool-video" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " class="gomjz-text">+视频</div>
+        <div class="tool-video" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " >+视频</div>
     </div>
-    <div id="gomjz-viewport" style="flex:2 0 400px">
+    <div id="gomjz-mid-section"></div>
+    <div id="gomjz-viewport">
         <div id="gomjz-draw-restrict" style="background:#eee;border:1px solid #eee;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;margin:5px auto;width:407px;height:699px; " >
             <div id="gomjz-draw" style="height: 667px;width:375px;margin:15px;position:relative;background:white;overflow: scroll;">
 
@@ -36,7 +42,7 @@
         </div>
     </div>
 
-    <div id="gomjz-properties" style="flex:1 0 262px">
+    <div id="gomjz-properties" >
         <div style="background:#fff;border:1px solid #eee;width:262px;height:100%;margin:5px 15px; ">
             <div style="height:60px;">
                 <ul class="top-nav clearfix" style="height:36px;margin:12px 19px;display: flex;
