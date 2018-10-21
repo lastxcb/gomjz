@@ -238,6 +238,8 @@
     //form_serialize
     //form_invalidation
     //事件委托
+
+    //学习 colpick.js 与 interact.js的开头
     
     /*  
      * 函数绑定对象
@@ -264,7 +266,42 @@
         }
     }
 
+    /*
+        节流函数
+        throttle(fn , interval)
+        例：
+        window.onresize =  throttle(function(){
+            console.log(2);
+        },100);
+    */
+    var throttle = function(fn ,interval){
+        var __self = fn,
+        timer,
+        firstTime = true;
+
+        return function(){
+            var args = arguments,
+            __me = this;
+
+            if(firstTime){
+                __self.apply(__me,args);
+                return firstTime = false;
+            }
+
+            if(timer){
+                return false;
+            }
+
+            timer = setTimeout(function(){
+                clearTimeout(timer);
+                timer = null;
+                __self.apply(__me,args);
+            },interval||500);
+        }
+    }
+
     
+        
 
 </script>
 
