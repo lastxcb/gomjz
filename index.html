@@ -239,12 +239,32 @@
     //form_invalidation
     //事件委托
     
-    Function.prototype.bind = function( context ){
-        var self = this;
+    /*  
+     * 函数绑定对象
+     * bind( obj,arg1,arg2 )
+     * 例:
+        var obj = {
+            name: 'sven'
+        }
+
+        var func = function(a,b){
+            alert(this.name);
+            alert(a);
+            alert(b);
+        }.bind(obj,1);
+        
+        func(2);
+    */
+    Function.prototype.bind = function( ){
+        var self = this,
+            context = [].shift.call( arguments ),
+            args = [].slice.call( arguments );
         return function(){
-            return self.apply( context, arguments );
+            return self.apply( context, [].concat.call( args, [].slice.call(arguments) ) );
         }
     }
+
+    
 
 </script>
 
