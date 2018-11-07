@@ -1,9 +1,0 @@
-extends: '../packages/.eslintrc.yml'
-
-globals:
-  interact: false
-  _: false
-  $: false
-
-rules:
-  no-console: 0
