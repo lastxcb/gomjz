@@ -1,309 +1,230 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gomjz</title>
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/editor.css">
-    <link rel="stylesheet" href="plugins/bootstrap-modal/modal.css">
-    <link rel="stylesheet" href="plugins/bootstrap-modal/modal.theme.css">
-    <link rel="stylesheet" href="plugins/colpick/css/colpick.css">
-</head>
-<body>
-<div id="gomjz-top-toolbar" >
-    头
+  <head>
+  	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="./common/default.css">
+    <link rel="stylesheet" type="text/css" href="./common/element.css">
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-reboot.css">
+    <link href="./dist/ripple.css" rel="stylesheet" type="text/css" />
+    <link href="./dist/dropdown.css" rel="stylesheet" type="text/css" />
 
-</div>
-<menu id="context-menu" class="context-menu">
-    <ul class="context-menu__items">
-        <li class="context-menu__item">
-            <a href="#" class="context-menu-delete context-menu__link" data-action="删除">删除</a>
-        </li>
-    </ul>
-</menu>
-<div id="gomjz-main-content" >
+    <style type="text/css">
+    	/*|  12  | 12/16 = .75   |
+		|  14  | 14/16 = .875  |
+		|  16  | 16/16 = 1     |
+		|  18  | 18/16 = 1.125 |
+		|  20  | 20/16 = 1.25  |*/
+		#main{
+			background: #282828;
+			min-width: 960px;
+		}
+    	#topbar{
+    	  display: -webkit-box;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -ms-flex-wrap: nowrap;
+		  flex-wrap: nowrap;
+		  color:#f3f3f3;
+		  background: #535353;
+		  height:29px;
+		  font-size: 0.75rem;
+		  border-bottom: 1px solid #383838;
+    	}
+    	#topbar-left{
+    	  display: -webkit-box;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -ms-flex-wrap: nowrap;
+		  flex-wrap: nowrap;
+    	}
+    	#topbar-right{
+    	  display: -webkit-box;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -ms-flex-wrap: nowrap;
+		  flex-wrap: nowrap;
+    	}
+    	#top-logo{
 
+    	}
+    	#top-left-menu{
 
-    <div id="gomjz-toolbar">
-        <div class="tool-text" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " >+文字</div>
-        <div class="tool-image" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " >+图片</div>
-        <div class="tool-video" style="background:#eee;height: 50px;width: 50px;line-height: 50px;text-align: center;margin:5px 5px 5px 50px; " >+视频</div>
-    </div>
-    <div id="gomjz-mid-section"></div>
-    <div id="gomjz-viewport">
-        <div id="gomjz-draw-restrict" style="background:#eee;border:1px solid #eee;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;margin:5px auto;width:407px;height:699px; " >
-            <div id="gomjz-draw" style="height: 667px;width:375px;margin:15px;position:relative;background:white;overflow: scroll;">
+    	}
+    	#top-right-menu{
 
-            </div>
-        </div>
-    </div>
+    	}
+    	#topbar .logo-element{
+    		padding:0 15px;
+    		font-weight: 600;
+    		height:16px;
+    	}
+    	#topbar .menu-element{
+    		padding:0 0px;
+    		cursor: pointer;
+    		height:16px;
+    		position: relative;
+    	}
 
-    <div id="gomjz-properties" >
-        <div style="background:#fff;border:1px solid #eee;width:262px;height:100%;margin:5px 15px; ">
-            <div style="height:60px;">
-                <ul class="top-nav clearfix" style="height:36px;margin:12px 19px;display: flex;
-    justify-content: center;list-style: none;">
-                    <li class="properties-tab active" value="1">内容</li>
-                    <li class="properties-tab" value="2">样式</li>
-                    <li class="properties-tab" value="3">动画</li>
-                </ul>
-            </div>
+    	#topbar .dropdown-menu{
+    		background-color: #535353 !important;
+    	}
 
-            <div class="properties-content properties-content1">
-                <section class="clearfix properties-section text-section" style="padding: 8px 20px;font-size: 12px;">
-                    <div style="">
-                        <textarea class="text-content-editor" style="width:100%;font-size:14px;" rows="12" ></textarea>
-                    </div>
-                </section>
-                <section class="clearfix properties-section image-section" style="padding: 8px 20px;font-size: 12px;">
-                    <div style="">
-                        <img src='' class='img-preview'/>
+    	#topbar .dropdown-menu > li > a {
+    		color:#f3f3f3 !important;
+    		padding: 4px 16px;;
+    	}
 
-                        <input class="image-content-editor" type="file"  required/>
-                    </div>
-                </section>
-                <section class="clearfix properties-section video-section" style="padding: 8px 20px;font-size: 12px;">
-                    <div style="">
-                        <input class="video-content-editor" type="text" style="width:100%;font-size:14px;" rows="12" placeholder="视频地址" />
-                    </div>
-                </section>
-            </div>
-            <div class="properties-content properties-content2">
-                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字颜色</label>
-                    <div style="width: 70px;height: 30px;float:left;">
-                        <div class="text-color-picker md-input" style="text-indent: 0;text-align:center;">
-                            #ffffff
-                        </div>
-                    </div>
-                    <ul class="text-color-picker-pre" style="margin-left:5px;width: 80px;height: 30px;float:left;">
-                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#18cfa1" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#000000" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                    </ul>
-                </section>
+    	.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+		  text-decoration: none;
+		  color: #f3f3f3 !important;
+		  background-color: #868686 !important;
+		}
 
+		.topmenu-btn {
+		  line-height: 20px;
+		  display: inline-block;
+		  height: 20px;
+		  padding: 0 16px;
+		  border: none;
+		  border-radius: 2px;
+		  cursor: pointer;
+		  -ms-touch-action: manipulation;
+		  touch-action: manipulation;
+		  text-align: center;
+		  vertical-align: middle;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  position: relative;
+		  overflow: hidden;
+		}
 
+		.btn-primary {
+		  color:#f3f3f3;
+		  background-color: #535353;
+		}
+    </style>
+  </head>
+  <body>
+  	
+  	<div id="main" style="height:1000px;">
+  		<div id="topbar" class="justify-content-between">
+  			<div id="topbar-left" class="align-items-center">
+  				<div id="top-logo">
+		  			<span class="logo-element">
+			  			🐱喵建站
+			  		</span>
+		  		</div>
+  				<div id="top-left-menu">
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple dropdown-toggle">
+						    站点
+						 </div>
+						  <ul class="dropdown-menu">
+						    <li><a href="#">新建</a></li>
+						    <li><a href="#">打开</a></li>
+						    <li><a href="#">保存</a></li>
+						    <li><a href="#">关闭</a></li>
+						  </ul>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple dropdown-toggle">
+						    编辑
+						 </div>
+						  <ul class="dropdown-menu">
+						    <li><a href="#">撤销</a></li>
+						    <li><a href="#">重复</a></li>
+						    <li><a href="#">复制</a></li>
+						    <li><a href="#">剪切</a></li>
+						    <li><a href="#">粘贴</a></li>
+						  </ul>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple dropdown-toggle">
+						    插入
+						 </div>
+						  <ul class="dropdown-menu">
+						    <li><a href="#">单行文字</a></li>
+						    <li><a href="#">多行文字</a></li>
+						    <li><a href="#">图片</a></li>
+						  </ul>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple dropdown-toggle">
+						    素材
+						 </div>
+						  <ul class="dropdown-menu">
+						    <li><a href="#">文字特效</a></li>
+						    <li><a href="#">图片素材</a></li>
+						  </ul>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple">
+						    预览
+						 </div>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple">
+						    发布
+						 </div>
+		  			</span>
+		  		</div>
+  			</div>
+  			<div id="topbar-right" class="align-items-center">
+  				<div id="top-right-menu">
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple">
+						    登录
+						 </div>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple">
+						    设置
+						 </div>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple">
+						    帮助
+						 </div>
+		  			</span>
+		  			<span class="menu-element">
+		  				<div class="topmenu-btn btn-primary btn-ripple">
+						    关于
+						 </div>
+		  			</span>
+		  		</div>
+  			</div>
+	  	</div>
+	  	<div id="workspace">
+	  		<aside id="tools-panel">
+	  			<ul class="tool-list">
+	  				<li></li>
+	  				<li></li>
+	  				<li></li>
+	  				<li></li>
+	  				<li></li>
+	  				<li></li>
+	  			</ul>
+	  		</aside>
+	  		<main id="main-viewport">
 
-                <section class="properties-section text-section image-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">背景颜色</label>
-                    <div style="width: 70px;height: 30px;float:left;">
-                        <div class="text-bg-color-picker md-input" style="text-indent: 0;text-align:center;">
-                            #ffffff
-                        </div>
-                    </div>
-                    <ul class="text-bg-color-picker-pre" style="margin-left:5px;width: 80px;height: 30px;float:left;">
-                        <li data-bgcolor="#ffffff" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#fff;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ff5448" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ff5448;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#f2a653" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#f2a653;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#ffca28" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#ffca28;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#18cfa1" data-color="#000" style="margin-right:2px;margin-bottom:2px;background-color:#18cfa1;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#59c7f9" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#59c7f9;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4d8ff3" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4d8ff3;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#7171ef" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#7171ef;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#4f5975" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#4f5975;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                        <li data-bgcolor="#000000" data-color="#fff" style="margin-right:2px;margin-bottom:2px;background-color:#000;float:left;width:14px;height: 14px;cursor: pointer;border: 1px solid #ccd5db;border-radius: 3px;"></li>
-                    </ul>
-                </section>
-                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">字体大小</label>
-                    <div style="width: 80px;height: 30px;float:left;">
-                        <input class="text-font-size-slider slider" type="range" min="12" max="50" value="18">
-                    </div>
-                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
-                        <p style="">
-                            <input class="text-font-size-input sm-input" type="number" value="18" min="12" max="50" step="1" />
-                        </p>
-                    </div>
-                </section>
-                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">行高</label>
-                    <div style="width: 80px;height: 30px;float:left;">
-                        <input class="text-line-height-slider slider" type="range" min="0" max="5" value="1" step="0.1">
-                    </div>
-                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
-                        <p style="">
-                            <input class="text-line-height-input sm-input" type="number" value="1" min="0" max="5" step="0.1" />
-                        </p>
-                    </div>
-                </section>
-                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">上边距</label>
-                    <div style="width: 80px;height: 30px;float:left;">
-                        <input class="text-padding-top-slider slider" type="range" min="0" max="50" value="0" step="1">
-                    </div>
-                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
-                        <p style="">
-                            <input class="text-padding-top-input sm-input" type="number" value="0" min="0" max="50" step="1" />
-                        </p>
-                    </div>
-                </section>
-                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">下边距</label>
-                    <div style="width: 80px;height: 30px;float:left;">
-                        <input class="text-padding-bottom-slider slider" type="range" min="0" max="50" value="0" step="1">
-                    </div>
-                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
-                        <p style="">
-                            <input class="text-padding-bottom-input sm-input" type="number" value="0" min="0" max="50" step="1" />
-                        </p>
-                    </div>
-                </section>
-                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">左边距</label>
-                    <div style="width: 80px;height: 30px;float:left;">
-                        <input class="text-padding-left-slider slider" type="range" min="0" max="50" value="0" step="1">
-                    </div>
-                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
-                        <p style="">
-                            <input class="text-padding-left-input sm-input" type="number" value="0" min="0" max="50" step="1" />
-                        </p>
-                    </div>
-                </section>
-                <section class="properties-section text-section image-section video-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">右边距</label>
-                    <div style="width: 80px;height: 30px;float:left;">
-                        <input class="text-padding-right-slider slider" type="range" min="0" max="50" value="0" step="1">
-                    </div>
-                    <div style="width: 60px;margin-left:10px;height: 30px;float:left;">
-                        <p style="">
-                            <input class="text-padding-right-input sm-input" type="number" value="0" min="0" max="50" step="1" />
-                        </p>
-                    </div>
-                </section>
+	  		</main>
+	  		<aside id="properties-panel">
+	  			<section class="layouts-panel">
+	  			
+	  			</section>
+	  		</aside>
+	  	</div>
+  	</div>
 
-                <section class="properties-section text-section clearfix properties-section">
-                    <label class="properties-label">文字对齐</label>
-                    <ul class="fl" style="width: 140px;height: 30px;">
-                        <button title="居左" class="text-text-align-button sm-button left-button fl active" value="left">
-                            <img style="display:block;margin:0 auto;" src="img/text-left.png" width="16" height="12" />
-                        </button>
-                        <button title="居中" class="text-text-align-button sm-button mid-button fl" value="center">
-                            <img style="display:block;margin:0 auto;" src="img/text-center.png" width="16" height="12" />
-                        </button>
-                        <button title="居右" class="text-text-align-button sm-button mid-button fl" value="right">
-                            <img style="display:block;margin:0 auto;" src="img/text-right.png" width="16" height="12" />
-                        </button>
-                        <button title="拉伸" class="text-text-align-button sm-button right-button fl" value="justify">
-                            <img style="display:block;margin:0 auto;" src="img/text-justify.png" width="16" height="12" />
-                        </button>
-                    </ul>
-                </section>
-                <section class="properties-section text-section clearfix" style="padding: 8px 20px;height:46px;font-size: 12px;">
-                    <label style="font-size: 12px;float: left;width: 65px;font-weight: 400;color: #333;;margin: 0;height:30px;line-height: 30px">文字修饰</label>
-                    <ul style="width: 140px;height: 30px;float:left;">
-                        <button title="加粗" class="text-text-decoration-button sm-button left-button fl" value="bold">
-                            <img style="display:block;margin:0 auto;" src="img/text-bold.png" width="16" height="16" />
-                        </button>
-                        <button title="斜体" class="text-text-decoration-button sm-button mid-button fl" value="italic">
-                            <img style="display:block;margin:0 auto;" src="img/text-italic.png" width="16" height="16" />
-                        </button>
-                        <button title="下划线" class="text-text-decoration-button sm-button right-button fl" value="underline">
-                            <img style="display:block;margin:0 auto;" src="img/text-underline.png" width="16" height="16" />
-                        </button>
-                    </ul>
-                </section>
-            </div>
-            <div class="properties-content properties-content3">
-                <section class="clearfix" style="height:30px;padding-left:20px;margin-bottom:20px;">
-                    <select class="sm-select animation-list"></select>
-                    <button class="add-animation md-button">添加</button>
-                </section>
+  	
 
-                <div class="animation-container"></div>
-            </div>
-        </div>
-    </div>
-</div>
+  </body>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="plugins/interact-1.3.3/interact.min.js"></script>
-<script src="plugins/bootstrap-modal/modal.js"></script>
-<script src="plugins/colpick/js/colpick.js"></script>
-<script src="js/editor.js"></script>
-
-<script type="text/javascript">
-    //一些即将使用的通用函数
-    //form_serialize
-    //form_invalidation
-    //事件委托
-
-    //学习 colpick.js 与 interact.js的开头
-    
-    /*  
-     * 函数绑定对象
-     * bind( obj,arg1,arg2 )
-     * 例:
-        var obj = {
-            name: 'sven'
-        }
-
-        var func = function(a,b){
-            alert(this.name);
-            alert(a);
-            alert(b);
-        }.bind(obj,1);
-        
-        func(2);
-    */
-    Function.prototype.bind = function( ){
-        var self = this,
-            context = [].shift.call( arguments ),
-            args = [].slice.call( arguments );
-        return function(){
-            return self.apply( context, [].concat.call( args, [].slice.call(arguments) ) );
-        }
-    }
-
-    /*
-        节流函数
-        throttle(fn , interval)
-        例：
-        window.onresize =  throttle(function(){
-            console.log(2);
-        },100);
-    */
-    var throttle = function(fn ,interval){
-        var __self = fn,
-        timer,
-        firstTime = true;
-
-        return function(){
-            var args = arguments,
-            __me = this;
-
-            if(firstTime){
-                __self.apply(__me,args);
-                return firstTime = false;
-            }
-
-            if(timer){
-                return false;
-            }
-
-            timer = setTimeout(function(){
-                clearTimeout(timer);
-                timer = null;
-                __self.apply(__me,args);
-            },interval||500);
-        }
-    }
-
-    
-        
-
-</script>
-
-</body>
+  <!-- mui中的ripple和dropdown效果 -->
+  <script src="./dist/button-behavior.js"></script>
 </html>
